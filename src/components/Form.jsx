@@ -1,6 +1,8 @@
 import {EyeInvisibleOutlined, EyeOutlined} from "@ant-design/icons";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 function Form(props){
+    const navigate = useNavigate();
     const [email, setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [confirmpwd,setConfirmPwd]=useState("");
@@ -15,6 +17,7 @@ function Form(props){
 
         if (existingUser && existingUser.email === email) {
             alert("An account with this email already exists.");
+            navigate("/");
             return;
         }
         if(password !== confirmpwd){
@@ -31,10 +34,12 @@ function Form(props){
         const savedUser=JSON.parse(localStorage.getItem("user"));
         if(!savedUser){
             alert("No user found");
+            navigate("/signup");
             return;
         }
         if(savedUser.email!==email || savedUser.password!==password){
             alert("Invalid credentials");
+            navigate("/signup");
             return;
         }else{
             alert("Login successful");
