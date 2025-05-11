@@ -26,6 +26,7 @@ function Form(props){
         }
         localStorage.setItem("user",JSON.stringify({email,password}));
         alert("User Signed up");
+        navigate("/");
         console.log(`User Email: ${email}, password: ${password}`);
         setEmail("");
         setPassword("");
